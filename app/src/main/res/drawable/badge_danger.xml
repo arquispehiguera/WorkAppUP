@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/background_pendiente">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/danger" /> <!-- Color de fondo para estado "Pendiente" -->
+            <corners android:radius="12dp" /> <!-- Ajusta según sea necesario -->
+        </shape>
+    </item>
+
+</layer-list>
