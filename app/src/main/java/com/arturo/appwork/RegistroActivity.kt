@@ -27,7 +27,6 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var textLayaoutCheckBox: TextInputLayout
     private lateinit var usuarioDao: UsuarioDao
     private lateinit var ValueRadiobutton:String
-
     private lateinit var txtNombre:TextInputEditText
     private lateinit var txtDni:TextInputEditText
     private lateinit var txtTelefono:TextInputEditText

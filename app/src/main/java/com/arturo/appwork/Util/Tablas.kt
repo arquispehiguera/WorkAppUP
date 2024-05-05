@@ -1,5 +1,5 @@
 object Tablas {
-    const val DATABASE_NAME = "XXS.db"
+    const val DATABASE_NAME = "BDWORK.db"
     const val DATABASE_VERSION = 1
 
     object TipoUsuario {

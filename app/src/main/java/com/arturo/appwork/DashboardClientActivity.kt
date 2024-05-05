@@ -20,19 +20,28 @@ import com.arturo.appwork.Util.LocalStorage
 class DashboardClientActivity : AppCompatActivity() {
     private lateinit var servicioDao: ServicioDao
     private lateinit var lstServicios: List<Servicio>
+    private lateinit var lblname: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboardcliente_main)
+        asignarvariables()
         initializeDao()
         lstServicios = servicioDao.cargarServicio()
         val professionImageMap = mapOf(
             "Gasfitero" to R.drawable.gasfitero,
             "Electricista" to R.drawable.electricista,
             "Albañil" to R.drawable.albanil,
-            "Plomero" to R.drawable.carpintero
+            "Carpintero" to R.drawable.carpintero
         )
         populateContractedServices(professionImageMap)
         populateGridLayout()
+        lblname.text = intent.getStringExtra("Username")
+    }
+    fun asignarvariables(){
+        lblname = findViewById(R.id.lblname)
     }
     private fun initializeDao() {
         servicioDao = ServicioDao(this)
@@ -43,7 +52,7 @@ class DashboardClientActivity : AppCompatActivity() {
             CardData("Andrez Junior.", "Gasfitero", "03-11-24","Terminado"),
             CardData("Andrez Junior.", "Electricista", "03-11-24","Pendiente"),
             CardData("Andrez Junior.", "Albañil", "03-11-24","Terminado"),
-            CardData("Andrez Junior.", "Plomero", "03-11-24","Terminado")
+            CardData("Andrez Junior.", "Carpintero", "03-11-24","Terminado")
         )
 
         for (cardData in cardDataList) {

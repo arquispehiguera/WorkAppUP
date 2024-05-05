@@ -19,7 +19,7 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context,
                 " (${Tablas.Servicio.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " ${Tablas.Servicio.COLUMN_DESCRIPCION} TEXT NOT NULL); "
         db.execSQL(sqlServicio)
-        val tipoServicios = listOf("Gasfitero", "Electricista","Albañil","Plomero")
+        val tipoServicios = listOf("Gasfitero", "Electricista","Albañil","Carpintero")
 
         insertServicios(db, Tablas.Servicio.TABLE_NAME, Tablas.Servicio.COLUMN_DESCRIPCION, tipoServicios)
         val sqlUsuario = "CREATE TABLE IF NOT EXISTS ${Tablas.Usuario.TABLE_NAME} (" +

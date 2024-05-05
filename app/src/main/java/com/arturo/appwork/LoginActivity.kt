@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var txtUsuario: TextInputEditText
     private lateinit var btnIngresar: Button
     private lateinit var usuarioDao: UsuarioDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_main)
@@ -44,14 +45,28 @@ class LoginActivity : AppCompatActivity() {
           txtPassword.setError("dni son obligatorios")
       }
       if (valida) {
-          val mensaje = usuarioDao.autenticarUsuario(usuario,contraseña)
-          if (mensaje){
-              val intent = Intent(this, DashboardClientActivity::class.java)
-              startActivity(intent)
-          }else {
+          val autenticado = usuarioDao.autenticarUsuario(usuario, contraseña)
+
+          if (autenticado) {
+              val user = usuarioDao.obtenerUsuarioPorId(usuario)
+
+              if (user != null) {
+                  val intent = if (user.IdTipoUsuario == 1) {
+                      Intent(this, DashboardClientActivity::class.java)
+                  } else {
+                      Intent(this, DashboardProveedorActivity::class.java)
+                  }
+                  intent.putExtra("Username", user.Nombre)
+                  intent.putExtra("IdUser", user.IdUsuario)
+                  startActivity(intent)
+              } else {
+                  mostrarMensajeError("Error al listar usuario")
+              }
+          } else {
               mostrarMensajeError("Credenciales Incorrectas")
           }
       }
+
   }
     private fun mostrarMensajeError(mensaje: String) {
         AlertDialog.Builder(this)

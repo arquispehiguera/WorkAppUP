@@ -82,7 +82,6 @@ class UsuarioDao(context: Context) {
         }
         return respuesta
     }
-
     fun autenticarUsuario(email: String, password: String): Boolean {
         val db = sqLiteHelper.readableDatabase
         var autenticado = false
@@ -107,5 +106,29 @@ class UsuarioDao(context: Context) {
         }
         return autenticado
     }
-
+    fun obtenerUsuarioPorId(idUsuario: String): Usuario? {
+        var usuario: Usuario? = null
+        val query = "SELECT * FROM Usuario WHERE Dni = ?"
+        val db = sqLiteHelper.readableDatabase
+        val cursor: Cursor
+        try {
+            cursor = db.rawQuery(query, arrayOf(idUsuario.toString()))
+            if (cursor.moveToFirst()) {
+                usuario = Usuario()
+                usuario.IdUsuario = cursor.getInt(cursor.getColumnIndexOrThrow("IdUsuario"))
+                usuario.Nombre = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
+                usuario.Dni = cursor.getString(cursor.getColumnIndexOrThrow("Dni"))
+                usuario.Telefono = cursor.getString(cursor.getColumnIndexOrThrow("Telefono"))
+                usuario.Email = cursor.getString(cursor.getColumnIndexOrThrow("Email"))
+                usuario.IdTipoUsuario = cursor.getInt(cursor.getColumnIndexOrThrow("IdTipoUsuario"))
+                usuario.Password = cursor.getString(cursor.getColumnIndexOrThrow("Password"))
+                usuario.ServiciosID = cursor.getString(cursor.getColumnIndexOrThrow("ServiciosID"))
+            }
+        } catch (e: Exception) {
+            Log.e("Error", "Error al obtener usuario por ID: ${e.message}")
+        } finally {
+            db.close()
+        }
+        return usuario
+    }
 }
