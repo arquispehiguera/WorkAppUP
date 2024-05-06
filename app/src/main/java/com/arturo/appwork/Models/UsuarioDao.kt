@@ -131,4 +131,39 @@ class UsuarioDao(context: Context) {
         }
         return usuario
     }
+
+    fun obtenerListaUsuariosPorServicio(idServicio: String): ArrayList<Usuario>{
+        val listaUsuarioServ:ArrayList<Usuario> = ArrayList()
+        val query = "SELECT * FROM Usuario WHERE ServiciosID = ?"
+        val db = sqLiteHelper.readableDatabase
+        val cursor: Cursor
+        try{
+            cursor = db.rawQuery(query,arrayOf(idServicio.toString()))
+            cursor.moveToFirst()
+            do{
+                val IdUsuario = cursor.getInt(cursor.getColumnIndexOrThrow("IdUsuario"))
+                val Nombre = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
+                val Dni = cursor.getString(cursor.getColumnIndexOrThrow("Dni"))
+                val Telefono = cursor.getString(cursor.getColumnIndexOrThrow("Telefono"))
+                val Email = cursor.getString(cursor.getColumnIndexOrThrow("Email"))
+                val IdTipoUsuario = cursor.getInt(cursor.getColumnIndexOrThrow("IdTipoUsuario"))
+                val ServiciosID = cursor.getString(cursor.getColumnIndexOrThrow("ServiciosID"))
+                val usuario = Usuario()
+                usuario.IdUsuario = IdUsuario
+                usuario.Nombre = Nombre
+                usuario.Dni = Dni
+                usuario.Telefono = Telefono
+                usuario.Email = Email
+                usuario.IdTipoUsuario = IdTipoUsuario
+                usuario.ServiciosID = ServiciosID
+                listaUsuarioServ.add(usuario)
+            }while (cursor.moveToNext())
+        }catch (e:Exception){
+            Log.i("===", e.message.toString())
+        }finally {
+            db.close()
+        }
+
+        return listaUsuarioServ
+    }
 }
