@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -33,6 +34,7 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var txtTelefono:TextInputEditText
     private lateinit var txtEmail:TextInputEditText
     private lateinit var btnRegistrar:Button
+    private lateinit var btnVolver:ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registro_main)
@@ -55,6 +57,12 @@ class RegistroActivity : AppCompatActivity() {
         btnRegistrar = findViewById(R.id.btnIngresar)
         btnRegistrar.setOnClickListener {
             capturarDatos()
+        }
+
+        btnVolver = findViewById(R.id.btnVolver)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
     fun capturarDatos() {

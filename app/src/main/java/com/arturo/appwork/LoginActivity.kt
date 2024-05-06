@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
                   }
                   intent.putExtra("Username", user.Nombre)
                   intent.putExtra("IdUser", user.IdUsuario)
+                  intent.putExtra("IdTipoUser", user.IdTipoUsuario)
                   startActivity(intent)
               } else {
                   mostrarMensajeError("Error al listar usuario")
