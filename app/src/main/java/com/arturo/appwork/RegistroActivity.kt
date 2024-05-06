@@ -1,5 +1,6 @@
 package com.arturo.appwork
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -196,6 +197,8 @@ class RegistroActivity : AppCompatActivity() {
             mostrarMensajeError(mensaje)
             limpiarCampos()
             limpiarServicios()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
         alertDialogBuilder.setNegativeButton("Cancelar") { dialog, _ ->
             dialog.dismiss()
