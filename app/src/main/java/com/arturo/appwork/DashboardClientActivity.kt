@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -15,12 +16,12 @@ import androidx.core.content.ContextCompat
 import com.arturo.appwork.Entidades.CardData
 import com.arturo.appwork.Entidades.Servicio
 import com.arturo.appwork.Models.ServicioDao
-import com.arturo.appwork.Util.LocalStorage
 
 class DashboardClientActivity : AppCompatActivity() {
     private lateinit var servicioDao: ServicioDao
     private lateinit var lstServicios: List<Servicio>
     private lateinit var lblname: TextView
+    private lateinit var btnVolver1: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class DashboardClientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboardcliente_main)
         asignarvariables()
+        asignarreferencias()
         initializeDao()
         lstServicios = servicioDao.cargarServicio()
         val professionImageMap = mapOf(
@@ -39,6 +41,15 @@ class DashboardClientActivity : AppCompatActivity() {
         populateContractedServices(professionImageMap)
         populateGridLayout()
         lblname.text = intent.getStringExtra("Username")
+    }
+    fun asignarreferencias(){
+        btnVolver1 = findViewById(R.id.btnVolver1)
+        btnVolver1.setOnClickListener {
+            finishAffinity()
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+
     }
     fun asignarvariables(){
         lblname = findViewById(R.id.lblname)
@@ -81,6 +92,7 @@ class DashboardClientActivity : AppCompatActivity() {
         }
     }
     private fun populateGridLayout() {
+        val tipoUsuario = intent.getIntExtra("IdTipoUser",0)
         val gridLayout = findViewById<GridLayout>(R.id.gridLayout)
         val buttonWidth = resources.getDimensionPixelSize(R.dimen.button_width)
         val buttonHeight = resources.getDimensionPixelSize(R.dimen.button_height)
@@ -112,6 +124,8 @@ class DashboardClientActivity : AppCompatActivity() {
                 val intent = Intent(this, ResitroServicioActicity::class.java)
 
                 intent.putExtra("IdServicio", it.id)
+                intent.putExtra("Username", lblname.text)
+                intent.putExtra("IdTipoUser", tipoUsuario)
                 startActivity(intent)
             }
         }
