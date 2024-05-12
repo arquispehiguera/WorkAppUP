@@ -134,7 +134,7 @@ class UsuarioDao(context: Context) {
 
     fun obtenerListaUsuariosPorServicio(idServicio: String): ArrayList<Usuario>{
         val listaUsuarioServ:ArrayList<Usuario> = ArrayList()
-        val query = "SELECT * FROM Usuario WHERE ServiciosID like '%1%'"
+        val query = "SELECT * FROM Usuario WHERE ServiciosID like '%$idServicio%'"
         //val query = "SELECT * FROM Usuario"
         val db = sqLiteHelper.writableDatabase
         val cursor: Cursor
