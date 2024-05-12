@@ -1,6 +1,6 @@
 object Tablas {
     const val DATABASE_NAME = "BDWORK.db"
-    const val DATABASE_VERSION = 2
+    const val DATABASE_VERSION = 4
 
     object TipoUsuario {
         const val TABLE_NAME = "TipoUsuario"

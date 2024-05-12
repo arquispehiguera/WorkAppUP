@@ -40,6 +40,25 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context,
         db.execSQL(sqlEstado)
         val Estado = listOf("Proveedor Trabajando", "En Pausa", "Finalizado", "Cancelado", "Anulado","Pendinete Validación")
         insertEstado(db, Tablas.Estado.TABLE_NAME, Tablas.Estado.COLUMN_DESCRIPCION, Estado)
+
+        val sqlSolicitud = "CREATE TABLE IF NOT EXISTS ${Tablas.Solicitud.TABLE_NAME} (" +
+                "${Tablas.Solicitud.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "${Tablas.Solicitud.COLUMN_ID_CLIENTE} INTEGER NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_ID_PROVEEDOR} INTEGER NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_FECHA_REG} NUMERIC NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_ID_ESTADO} INTEGER NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_VALORACION} INTEGER NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_OBSERVACION} TEXT NOT NULL); "
+        db.execSQL(sqlSolicitud)
+
+        val SQLSolicitudHistorial = "CREATE TABLE IF NOT EXISTS ${Tablas.SolicitudHistorial.TABLE_NAME} (" +
+                "${Tablas.SolicitudHistorial.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "${Tablas.SolicitudHistorial.COLUMN_ID_SOL} INTEGER NOT NULL, " +
+                "${Tablas.SolicitudHistorial.COLUMN_FECHA_REG} NUMERIC NOT NULL, " +
+                "${Tablas.SolicitudHistorial.COLUMN_ID_ESTADO} INTEGER NOT NULL, " +
+                "${Tablas.SolicitudHistorial.COLUMN_OBSERVACION} TEXT NOT NULL); "
+        db.execSQL(SQLSolicitudHistorial)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -47,6 +66,8 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context,
         db.execSQL("DROP TABLE IF EXISTS ${Tablas.Servicio.TABLE_NAME}")
         db.execSQL("DROP TABLE IF EXISTS ${Tablas.Usuario.TABLE_NAME}")
         db.execSQL("DROP TABLE IF EXISTS ${Tablas.Estado.TABLE_NAME}")
+        db.execSQL("DROP TABLE IF EXISTS ${Tablas.Solicitud.TABLE_NAME}")
+        db.execSQL("DROP TABLE IF EXISTS ${Tablas.SolicitudHistorial.TABLE_NAME}")
         onCreate(db)
     }
 
