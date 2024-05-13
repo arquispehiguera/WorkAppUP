@@ -22,6 +22,7 @@ class SolicitudDao(context:Context) {
                 val id:Int = cursor.getInt(cursor.getColumnIndexOrThrow("IdSolicitud"))
                 val idCliente:Int = cursor.getInt(cursor.getColumnIndexOrThrow("IdCliente"))
                 val idProveedor:Int = cursor.getInt(cursor.getColumnIndexOrThrow("IdProveedor"))
+                val idServicio:Int = cursor.getInt(cursor.getColumnIndexOrThrow("IdServicio"))
                 val fechaRegistro:String = cursor.getString(cursor.getColumnIndexOrThrow("FechaRegistro"))
                 val estadoSolicitud:Int = cursor.getInt(cursor.getColumnIndexOrThrow("EstadoSolicitud"))
                 val valoracion:Int = cursor.getInt(cursor.getColumnIndexOrThrow("Valoracion"))
@@ -31,6 +32,7 @@ class SolicitudDao(context:Context) {
                 solicitud.IdSolicitud = id
                 solicitud.IdCliente = idCliente
                 solicitud.IdProveedor = idProveedor
+                solicitud.IdServicio = idServicio
                 solicitud.FechaRegistro = fechaRegistro
                 solicitud.IdEstadoSol = estadoSolicitud
                 solicitud.Valoracion = valoracion

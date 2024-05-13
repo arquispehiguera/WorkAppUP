@@ -30,10 +30,15 @@ class AdaptadorProveedor: RecyclerView.Adapter<AdaptadorProveedor.MiViewHolder>(
         var filaEliminar = view.findViewById<ImageButton>(R.id.filaEliminar)
 
         fun bindView(solicitud: Solicitud) {
-
+/*
             nombres.text = solicitud.nombreUsuario.toString()
             servicio.text = solicitud.nombreServicio.toString()
             fechaservicio.text = solicitud.FechaRegistro.toString()
+            */
+            nombres.text ="1"
+            servicio.text = "2"
+            fechaservicio.text = "3"
+
         }
     }
     override fun onCreateViewHolder(
