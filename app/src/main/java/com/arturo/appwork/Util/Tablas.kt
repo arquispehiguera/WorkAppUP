@@ -1,6 +1,6 @@
 object Tablas {
     const val DATABASE_NAME = "BDWORK.db"
-    const val DATABASE_VERSION = 4
+    const val DATABASE_VERSION = 7
 
     object TipoUsuario {
         const val TABLE_NAME = "TipoUsuario"
@@ -36,6 +36,7 @@ object Tablas {
         const val COLUMN_ID = "IdSolicitud"
         const val COLUMN_ID_CLIENTE= "IdCliente"
         const val COLUMN_ID_PROVEEDOR = "IdProveedor"
+        const val COLUMN_ID_SERVICIO = "idServicio"
         const val COLUMN_FECHA_REG = "FechaRegistro"
         const val COLUMN_ID_ESTADO =  "EstadoSolicitud"
         const val COLUMN_VALORACION = "Valoracion"

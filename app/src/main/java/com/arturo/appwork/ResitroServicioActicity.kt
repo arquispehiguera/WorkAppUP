@@ -40,19 +40,7 @@ class ResitroServicioActicity : AppCompatActivity() {
         val tipoUsuario = intent.getIntExtra("IdTipoUser",0)
         btnVolver2 = findViewById(R.id.btnVolver2)
         btnVolver2.setOnClickListener {
-            /*if(tipoUsuario==1){
-                mostrarMensaje("Tipo Cliente: ${tipoUsuario.toString()}")
-                val intent = Intent(this, DashboardClientActivity::class.java)
-            }else if(tipoUsuario==2){
-                mostrarMensaje("Tipo Proveedor: ${tipoUsuario.toString()}")
-                val intent = Intent(this, DashboardProveedorActivity::class.java)
-            }
-            else{
-                mostrarMensaje("Error al cargar el Tipo de Usuario: ${tipoUsuario.toString()}")
-            }
-            startActivity(intent)
 
-             */
         }
     }
 

@@ -9,4 +9,6 @@ class Usuario {
     lateinit var Password: String
     lateinit var ServiciosID: String
     var IdTipoUsuario: Int = 0
+
+    lateinit var ServiciosDetalle: String
 }

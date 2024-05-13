@@ -46,14 +46,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:text="NameCard"/>
 
                 <TextView
                     android:id="@+id/txtespecialidadcard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    android:text="Especialidad Card"/>
 
                 <TextView
                     android:id="@+id/txtfechacard"
@@ -74,6 +76,7 @@
                     android:paddingEnd="6dp"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"
+                    android:text="Estado"
                      />
 
             </LinearLayout>

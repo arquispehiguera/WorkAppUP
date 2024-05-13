@@ -38,18 +38,26 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context,
                 " (${Tablas.Estado.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " ${Tablas.Estado.COLUMN_DESCRIPCION} TEXT NOT NULL); "
         db.execSQL(sqlEstado)
-        val Estado = listOf("Proveedor Trabajando", "En Pausa", "Finalizado", "Cancelado", "Anulado","Pendinete Validación")
+        val Estado = listOf("Proveedor Trabajando", "En Pausa", "Finalizado", "Cancelado", "Anulado","Pendinete Validación","Disponible")
         insertEstado(db, Tablas.Estado.TABLE_NAME, Tablas.Estado.COLUMN_DESCRIPCION, Estado)
 
         val sqlSolicitud = "CREATE TABLE IF NOT EXISTS ${Tablas.Solicitud.TABLE_NAME} (" +
                 "${Tablas.Solicitud.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "${Tablas.Solicitud.COLUMN_ID_CLIENTE} INTEGER NOT NULL, " +
                 "${Tablas.Solicitud.COLUMN_ID_PROVEEDOR} INTEGER NOT NULL, " +
-                "${Tablas.Solicitud.COLUMN_FECHA_REG} NUMERIC NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_ID_SERVICIO} INTEGER NOT NULL, " +
+                "${Tablas.Solicitud.COLUMN_FECHA_REG} TEXT NOT NULL, " +
                 "${Tablas.Solicitud.COLUMN_ID_ESTADO} INTEGER NOT NULL, " +
-                "${Tablas.Solicitud.COLUMN_VALORACION} INTEGER NOT NULL, " +
-                "${Tablas.Solicitud.COLUMN_OBSERVACION} TEXT NOT NULL); "
+                "${Tablas.Solicitud.COLUMN_VALORACION} INTEGER, " +
+                "${Tablas.Solicitud.COLUMN_OBSERVACION} TEXT ); "
         db.execSQL(sqlSolicitud)
+
+        val DatosPrueba1 = "INSERT INTO Solicitud(IdCliente,IdProveedor,idServicio,FechaRegistro,EstadoSolicitud) VALUES (2,1,1,datetime('now'),7)"
+        db.execSQL(DatosPrueba1)
+        val DatosPrueba2 = "INSERT INTO Solicitud(IdCliente,IdProveedor,idServicio,FechaRegistro,EstadoSolicitud) VALUES (2,3,1,datetime('now'),7)"
+        db.execSQL(DatosPrueba2)
+        val DatosPrueba3 = "INSERT INTO Solicitud(IdCliente,IdProveedor,idServicio,FechaRegistro,EstadoSolicitud) VALUES (2,4,2,datetime('now'),7)"
+        db.execSQL(DatosPrueba3)
 
         val SQLSolicitudHistorial = "CREATE TABLE IF NOT EXISTS ${Tablas.SolicitudHistorial.TABLE_NAME} (" +
                 "${Tablas.SolicitudHistorial.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
